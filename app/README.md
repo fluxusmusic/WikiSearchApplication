@@ -1,6 +1,6 @@
 # 요구사항
 
-검색 상세 페이지: https://en.wikipedia.org/api/rest_v1/page/html/{검색어}
+- 검색 상세 페이지: https://en.wikipedia.org/api/rest_v1/page/html/{검색어}
 - 요약 정보 API: https://en.wikipedia.org/api/rest_v1/page/summary/{검색어}
 - 연관 검색 API: https://en.wikipedia.org/api/rest_v1/page/related/{검색어}
 * 요구 사항
