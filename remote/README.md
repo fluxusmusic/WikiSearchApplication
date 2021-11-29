@@ -11,6 +11,9 @@
 
 
 ## Builds
+### Debug build 시, Jar및, kDoc함께 생성 (projectDir/debug/)
+### Release Proguard 적용
+
 ### Gradle Task, exportJar (Optional)
 • Jar format 의 library 를 build 한다. 해당 모듈 프로젝트의 release 폴더에 생성되며, kDoc 도 함께 생성된다.
 
