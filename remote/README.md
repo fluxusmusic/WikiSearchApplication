@@ -1,13 +1,3 @@
-# 요구사항
-• HttpURLConnection, HttpsURLConnection 기반으로 구현한다.
-• http 방식이든 https 방식이든, 모두 호출될 수 있도록 작성한다.
-• 요청 메서드 타입은 GET, POST, PUT, DELETE를 지원하도록 한다.
-• Request Header 값을 설정할 수 있어야 한다.
-• Response Data를 어떤 형식의 타입으로도 요청할 수 있어야 한다.
-• Request Body 전달 시 어떤 형식으로든 서버에 전달, 요청할 수 있어야 한다.
-• API 접속 timeout 시간을 설정할 수 있도록 작성한다.
-• jar로 패키징될 수 있도록 gradle 빌드 스크립트도 작성한다.
-• 위의 요구 사항에 대해서 테스트 케이스를 작성한다.
 
 
 ## Builds
