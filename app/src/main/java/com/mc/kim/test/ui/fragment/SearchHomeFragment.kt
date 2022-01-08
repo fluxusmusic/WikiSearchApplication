@@ -3,7 +3,6 @@ package com.mc.kim.test.ui.fragment
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,8 +31,10 @@ import com.mc.kim.test.ui.fragment.adapter.SearchResultAdapter
 import com.mc.kim.test.ui.fragment.loader.ResourceLoader
 import com.mc.kim.test.ui.fragment.row.WikiRow
 import com.mc.kim.test.ui.view.DividerItemDecoration
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.cancel
 
+@AndroidEntryPoint
 class SearchHomeFragment : Fragment() {
     private val TAG: String = SearchHomeFragment::class.simpleName!!
 

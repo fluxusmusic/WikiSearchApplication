@@ -8,6 +8,10 @@ import com.mc.kim.remote.parser.ResponseParser
 import com.mc.kim.remote.util.JsonParser
 import com.mc.kim.test.dao.response.WikiData
 import com.mc.kim.test.dao.response.WikiDataList
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 private const val WIKI_BASE_URL = "https://en.wikipedia.org/api/rest_v1/page"
 
@@ -40,9 +44,17 @@ class WikiDataManager : SimpleDataManager(Method.GET, WIKI_BASE_URL) {
         })
 
     fun requestRelatedLit(wikiData: WikiData): ResponseResult<WikiDataList> =
-        getRelatedKeyword(wikiData.titles.canonical).connect(object : ResponseParser<WikiDataList>() {
+        getRelatedKeyword(wikiData.titles.canonical).connect(object :
+            ResponseParser<WikiDataList>() {
             override fun responseBodyParser(body: String): WikiDataList {
                 return JsonParser().toJson(body, WikiDataList::class)
             }
         })
+
+    @Module
+    @InstallIn(SingletonComponent::class)
+    internal object WikiDataManagerModule {
+        @Provides
+        fun provideWikiDataManager(): WikiDataManager = WikiDataManager()
+    }
 }
