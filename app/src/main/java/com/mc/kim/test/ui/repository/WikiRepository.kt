@@ -8,6 +8,10 @@ import com.mc.kim.test.dao.WikiDataManager
 import com.mc.kim.test.dao.obj.Image
 import com.mc.kim.test.dao.response.WikiData
 import com.mc.kim.test.dao.response.WikiDataList
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,12 +23,12 @@ import java.util.*
 private val maxMemory = (Runtime.getRuntime().maxMemory() / 1024).toInt()
 private val cacheSize = maxMemory / 8
 
-class WikiRepository private constructor(
-    private val wikiDataManager: WikiDataManager,
+class WikiRepository constructor(
+    private var wikiDataManager: WikiDataManager,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val lruCache: LruCache<String, Bitmap> = LruCache(cacheSize)
 ) {
-    private val TAG:String = WikiRepository::class.simpleName!!
+    private val TAG: String = WikiRepository::class.simpleName!!
     val keywordStack: Stack<String> = Stack()
 
     @Throws(MalformedURLException::class)
@@ -47,13 +51,11 @@ class WikiRepository private constructor(
             wikiDataManager.requestRelatedLit(wikiData)
         }
 
-    companion object {
-        @Volatile
-        private var instance: WikiRepository? = null
-
-        fun getInstance(wikiDataManager: WikiDataManager) =
-            instance ?: synchronized(this) {
-                instance ?: WikiRepository(wikiDataManager).also { instance = it }
-            }
+    @Module
+    @InstallIn(SingletonComponent::class)
+    internal object WikiRepositoryModule {
+        @Provides
+        fun provideWikiRepository(wikiDataManager: WikiDataManager): WikiRepository =
+            WikiRepository(wikiDataManager)
     }
 }

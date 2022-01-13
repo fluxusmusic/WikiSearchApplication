@@ -7,7 +7,9 @@ import com.mc.kim.test.toolkit.ACTION_START_SEARCH
 import com.mc.kim.test.toolkit.ACTION_START_WEB
 import com.mc.kim.test.ui.fragment.SearchHomeFragment
 import com.mc.kim.test.ui.fragment.WebViewFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchHomeActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

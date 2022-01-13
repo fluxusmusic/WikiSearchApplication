@@ -2,27 +2,23 @@ package com.mc.kim.test.ui.viewModel
 
 import android.content.res.Resources
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.mc.kim.remote.api.ResponseResult
-import com.mc.kim.remote.util.Log
-import com.mc.kim.test.R
 import com.mc.kim.test.dao.obj.Image
 import com.mc.kim.test.dao.response.WikiData
 import com.mc.kim.test.dao.response.WikiDataList
 import com.mc.kim.test.ui.repository.WikiRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.net.MalformedURLException
+import javax.inject.Inject
 
-class SearchHomeViewModel internal constructor(
-    private val wikiRepository: WikiRepository
+@HiltViewModel
+class SearchHomeViewModel @Inject constructor(
+    private val wikiRepository: WikiRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val TAG = SearchHomeViewModel::class.simpleName!!
-
 
     private val _summary = MutableLiveData<ResponseResult<WikiData>>()
     val summaryData: LiveData<ResponseResult<WikiData>> get() = _summary

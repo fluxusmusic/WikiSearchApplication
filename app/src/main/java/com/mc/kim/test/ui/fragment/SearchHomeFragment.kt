@@ -10,10 +10,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.mc.kim.test.ui.Injector
-import com.mc.kim.test.ui.repository.WikiRepository
 import com.mc.kim.test.ui.viewModel.SearchHomeViewModel
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
@@ -38,9 +34,7 @@ import kotlinx.coroutines.cancel
 class SearchHomeFragment : Fragment() {
     private val TAG: String = SearchHomeFragment::class.simpleName!!
 
-    private val viewModel: SearchHomeViewModel by viewModels {
-        Injector.provideSearchHomeViewModelFactory(requireContext())
-    }
+    private val viewModel: SearchHomeViewModel by viewModels()
 
     private lateinit var resourceLoader: ResourceLoader
 
@@ -193,9 +187,9 @@ class SearchHomeFragment : Fragment() {
     }
 }
 
-class SearchHomeViewModelFactory(
-    private val repository: WikiRepository
-) : ViewModelProvider.NewInstanceFactory() {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>) = SearchHomeViewModel(repository) as T
-}
+//class SearchHomeViewModelFactory(
+//    private val repository: WikiRepository
+//) : ViewModelProvider.NewInstanceFactory() {
+//
+//    override fun <T : ViewModel> create(modelClass: Class<T>) = SearchHomeViewModel(repository) as T
+//}

@@ -12,6 +12,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 private const val WIKI_BASE_URL = "https://en.wikipedia.org/api/rest_v1/page"
 
@@ -55,6 +56,7 @@ class WikiDataManager : SimpleDataManager(Method.GET, WIKI_BASE_URL) {
     @InstallIn(SingletonComponent::class)
     internal object WikiDataManagerModule {
         @Provides
+        @Singleton
         fun provideWikiDataManager(): WikiDataManager = WikiDataManager()
     }
 }
